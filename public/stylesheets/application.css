@@ -1,0 +1,70 @@
+body {
+  background:#fff;
+  font-family: Arial, sans-serif;
+  font-size:12px;
+  line-height:17px;
+  color:#5d5d5d;
+  padding-bottom:10px;
+}
+
+input, textarea, select { font-family: Arial, sans-serif; font-size:19px; }
+
+h1 {
+  margin: 1em 0;
+}  
+form{
+/*	background: none repeat scroll 0 0 #DDEEEE;*/
+  border: 1px solid #000000;
+  margin: 0 auto;
+  padding: 10px;
+  
+}
+
+a { color: #4775B8; text-decoration: underline; cursor:pointer; }
+a:hover { color:#5d5d5d; text-decoration: none; }
+
+
+/*Yammer*/
+.notice{
+	 background-color: #CFFBC7;
+   color: #334D0D; 
+}
+/*-------------------------------------------------------------------*/
+#sidebar{
+	float:right;
+	margin-top:278px;
+	
+}
+#sidebar ul {
+	padding: 0;
+	list-style: none;
+	width: 200px;
+	-webkit-box-flex: 0;
+	-moz-box-flex: 0;
+	box-flex: 0;
+	overflow: hidden
+}
+
+#sidebar ul li {
+  display: block;
+  padding: 10px 10px 7px 20px;
+  border-bottom: 1px solid #cdcdcc;
+  cursor: pointer;
+  -moz-box-shadow: 0 1px 1px #fcfcfc;
+  -webkit-box-shadow: 0 1px 1px #fcfcfc;
+  box-shadow: 0 1px 1px #fcfcfc;
+}
+
+#sidebar ul li.current {
+  color: #ffffff;
+  text-shadow: 0 -1px 1px #46677f;
+  background: #7bb5db;
+  background: -webkit-gradient(linear, left top, left bottom, from(#7bb5db), to(#4775b8));
+  background: -moz-linear-gradient(top, #7bb5db, #4775b8);
+  background: linear-gradient(top, #7bb5db, #4775b8);
+  border-bottom-color: #609fd0;
+  -moz-box-shadow: inset 0 2px 2px #4775b8;
+  -webkit-box-shadow: inset 0 2px 2px #4775b8;
+  box-shadow: inset 0 2px 2px #4775b8;
+  -webkit-box-shadow: inset 0 1px 1px #4775b8, inset 0 -1px 1px #3e67a3;
+}

@@ -1,0 +1,7 @@
+ .button{
+    background: -moz-linear-gradient(center top , #7BB5DB, #4775B8) repeat scroll 0 0 transparent;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    color: #FFFFFF;
+    margin: 5px;
+    text-shadow: 0 -1px 1px #46677F;
+		}

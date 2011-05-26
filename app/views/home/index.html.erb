@@ -1,0 +1,22 @@
+<h1 class='current'>Welcome to my Chatting application :)</h1>
+<% if user_signed_in? %>
+  <div id='sidebar'>
+  	<h3>Online users</h3>
+    <ul id='channels'>
+    	<% @logged_in_users.each do |user|%>
+			  <li class='item current' id='user_<%=user.id%>'><%=user.channel_name %></li>
+			<% end %>
+    </ul>
+  </div>
+<% end %>
+<script type='text/javascript'>
+	$(document).ready(function(){
+		$("li").click(function(){
+			$.post('/channels', {sender_id: '<%=current_user.id%>', receiver_id: $(this).attr('id').replace(/user_/, '')}, function(data) {
+         //window.open('/channels/' + data, 'channel', 'width=600,height=300, scrollbars=yes')  
+      }, "html").success(function(data){ 
+			           window.open('/channels/' + data, 'channel', 'width=400,height=200, scrollbars=yes');
+						});
+		})
+	});
+</script>
