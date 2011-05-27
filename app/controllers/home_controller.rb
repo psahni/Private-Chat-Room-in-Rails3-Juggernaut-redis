@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 
 
   def index
-    @logged_in_users = User.where("current_sign_in_ip IS NOT  NULL AND id <> #{ current_user.id }") 
+    @logged_in_users = User.where("'last_time_activity' >= ? AND id <> ?",  Time.now.utc - 10.minutes, current_user.id) 
   end
 
 end
