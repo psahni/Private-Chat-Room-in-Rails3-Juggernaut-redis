@@ -1,0 +1,18 @@
+<%=javascript_tag "var username = '#{ current_user.channel_name }'"%>
+<!-- SUBSCRIBE TO THE CHANNEL-->
+<!-- Subscribe method takes two arguments, the channel name and a callback-->
+<script type="text/javascript" charset="utf-8">
+   var jug = new Juggernaut;
+   jug.subscribe('channel<%=@channel.channel_id%>', function(data){
+   var element = $('<li/>').addClass('items');
+   element.text(data);
+   $('#message').append(element);
+   $("#chat_box")[0].reset();
+  });
+</script>
+    
+<%= form_tag messages_path, :class => 'chat_box', :remote => true do %>
+  <%=text_area_tag    'message[body]','', :rows => 3, :cols => 26 %>
+  <%=hidden_field_tag 'message[channel_id]', @channel.channel_id %>
+  <%=submit_tag "Send", :class => 'button' %>
+<% end%>    

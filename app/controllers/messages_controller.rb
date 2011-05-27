@@ -2,8 +2,13 @@ class MessagesController < ApplicationController
   
   
   def create
-    @message = Message.create(params['message'])   
+    @message = Message.new
+    @message.body      = params['body']
+    @message.channel_id = params['channel_id']
+    @message.save!
     publish_message
+  rescue
+    logger.error("---"+ $!.message + " Message has not been saved----")    
   end
   
   

@@ -8,9 +8,7 @@ class ApplicationController < ActionController::Base
 #-------------------------------------------------------------------------------------
 
   def update_last_activity
-    if user_signed_in?
-      current_user.update_attribute(:last_time_activity, Time.now)
-    end
+   current_user.update_attribute(:last_time_activity, Time.now) if user_signed_in?
   end
   
 #-------------------------------------------------------------------------------------

@@ -32,7 +32,7 @@ function message_length(element){
 
 //-------------------------------------------------------------------
 function inject_message(msg_element){
- var element = $('<li/>');
+ var element = $('<li/>').addClass('items');
  element.text(username+":"+" "+msg_element.val());
  $('#message').append(element);
 }

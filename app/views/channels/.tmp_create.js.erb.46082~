@@ -1,0 +1,1 @@
+$('div.chat_windows').html($('<div/>').attr('id', 'form_<%= @channel.channel_id %> ).html('Hello Prashant'));

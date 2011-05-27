@@ -2,9 +2,8 @@
 <html>
 <head>
   <title>Chat application</title>
-  <%= stylesheet_link_tag    :all, 'jquery.ui.chatbox' %>
-  <%= javascript_include_tag :defaults, 'jquery.ui.chatbox', 'jquery-ui'%>
-	<script src="http://localhost:8080/application.js" type="text/javascript" charset="utf-8"></script>
+  <%= stylesheet_link_tag    :all %>
+  <%= javascript_include_tag :defaults%>
   <%= csrf_meta_tag %>
 </head>
 <body>

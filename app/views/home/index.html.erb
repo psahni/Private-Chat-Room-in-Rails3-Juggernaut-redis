@@ -1,3 +1,4 @@
+<%=javascript_tag "var username = '#{ current_user.channel_name }'"%>
 <h1 class='current'>Welcome to my Chatting application :)</h1>
 <% if user_signed_in? %>
   <div id='sidebar'>
@@ -9,14 +10,52 @@
     </ul>
   </div>
 <% end %>
+<div id="chat_div"></div>
+<div class='chat_windows'></div>
+
+
+<!--CHATTING BOX CODE-->
 <script type='text/javascript'>
+	var CHANNEL_ID = null;
 	$(document).ready(function(){
-		$("li").click(function(){
-			$.post('/channels', {sender_id: '<%=current_user.id%>', receiver_id: $(this).attr('id').replace(/user_/, '')}, function(data) {
-         //window.open('/channels/' + data, 'channel', 'width=600,height=300, scrollbars=yes')  
-      }, "html").success(function(data){ 
-			           window.open('/channels/' + data, 'channel', 'width=400,height=200, scrollbars=yes');
-						});
-		})
+		var box = null;
+		$('li').bind('click', function(){
+			var online_user_name = $(this).text(); 
+			$.post('/channels', {sender_id: '<%=current_user.id%>', receiver_id: $(this).attr('id').replace(/user_/, '')}, function(cid){
+				  CHANNEL_ID = cid; //data is channel id to which to user has to subscribe
+				  var jug = new Juggernaut;
+					jug.subscribe('channel'+CHANNEL_ID, function(data){
+						
+				  if(box){
+						box.chatbox("option", "boxManager").toggleBox();
+					}
+					else{
+						data = data.split(':');
+						online_user_name = data[0];
+						message = data[1];
+						manage_chat_box(box, online_user_name, username);
+						$("#chat_div").chatbox("option", "boxManager").addMsg(online_user_name, message);
+					}
+          
+			    });
+			}, "html")//.success(function(data){ alert(data)}); 
+            manage_chat_box(box, online_user_name, username);
+		});
 	});
+
+  function manage_chat_box(box, online_user_name, receiver_name){
+		var box = box;
+		if(box){
+       box.chatbox("option", "boxManager").toggleBox();
+     }
+     else{
+       box = $("#chat_div").chatbox({id: username,
+                                     user: {key: 'value'},
+                                     title: online_user_name,
+                                     messageSent: function(id, user, message){
+                                        $("#chat_div").chatbox("option", "boxManager").addMsg(id, message);
+                                        $.post('/messages', {channel_id: CHANNEL_ID, body: message}, function(){});
+                                     }});
+     }
+	}	
 </script>
