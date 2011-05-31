@@ -18,3 +18,4 @@ config/*.yml
 rerun.txt
 pickle-email-*.html
 db/schema.rb
+app/views/**/.tmp*
